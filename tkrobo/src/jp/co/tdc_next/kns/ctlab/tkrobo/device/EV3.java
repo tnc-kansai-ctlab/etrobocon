@@ -61,7 +61,7 @@ public class EV3 implements Runnable, EV3Control {
 	private SampleProvider distanceMode; // 距離検出モード
 	private float[] sampleDistance;
 
-	private float sonarDistance;
+	private float sonarDistance = 0.0f;
 
 	// カラーセンサ
 	private EV3ColorSensor colorSensor;
@@ -117,10 +117,17 @@ public class EV3 implements Runnable, EV3Control {
 		sampleTouch = new float[touchMode.sampleSize()];
 
 		// 超音波センサー
-		sonar = new EV3UltrasonicSensor(SENSORPORT_SONAR);
-		distanceMode = sonar.getDistanceMode(); // 距離検出モード
-		sampleDistance = new float[distanceMode.sampleSize()];
-		sonar.enable();
+		// 使用している個体では例外が発生する。差し当たり超音波センサーは利用しないので例外回避。
+		try {
+			sonar = new EV3UltrasonicSensor(SENSORPORT_SONAR);
+			distanceMode = sonar.getDistanceMode(); // 距離検出モード
+			sampleDistance = new float[distanceMode.sampleSize()];
+			sonar.enable();
+		} catch (IllegalArgumentException iae) {
+			sonar = null;
+			distanceMode = null;
+			sampleDistance = null;
+		}
 
 		// カラーセンサー
 		colorSensor = new EV3ColorSensor(SENSORPORT_COLOR);
@@ -182,7 +189,9 @@ public class EV3 implements Runnable, EV3Control {
 		motorPortR.close();
 		motorPortT.close();
 		colorSensor.setFloodlight(false);
-		sonar.disable();
+		if (sonar != null) {
+			sonar.disable();
+		}
 
 
 	}
@@ -267,8 +276,13 @@ public class EV3 implements Runnable, EV3Control {
 	public void run() {
 
 		if (++driveCallCounter >= 40 / 4) { // 約40msごとに障害物検知
-			distanceMode.fetchSample(sampleDistance, 0);
-			sonarDistance = sampleDistance[0];
+			// 超音波センサーが使用できるとは限らない。
+			if (distanceMode != null) {
+				distanceMode.fetchSample(sampleDistance, 0);
+				sonarDistance = sampleDistance[0];
+			} else {
+				sonarDistance = 0.0f;
+			}
 			driveCallCounter = 0;
 		}
 
