@@ -6,6 +6,7 @@
 package jp.co.tdc_next.kns.ctlab.tkrobo.device;
 
 // hogehoge
+// hogehoge
 
 import jp.etrobo.ev3.balancer.Balancer;
 import lejos.hardware.Battery;
