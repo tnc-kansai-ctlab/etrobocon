@@ -12,12 +12,18 @@ public class TravelTailControlRun implements Travel {
 
 	public TravelTailControlRun(Calibrater calibrater, int tail) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelTailControlRun]" + "[TravelTailControlRun]");
+
+
 		this.THRESHOLD = (calibrater.blackBaseline() + calibrater.whiteBaseline()) / 2.0F;
 		this.tail = tail;
 
 	}
 
 	public void travel(WheelSpeed speed) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelTailControlRun]" + "[travel]");
+
 		float forward = speed.getWheelSpeedScaleLeft();
 		float turn = jaggyTravel();
 		ev3.controlBalance(forward, turn, tail);
@@ -27,6 +33,9 @@ public class TravelTailControlRun implements Travel {
 	 * ジグザグ走行制御
 	 */
 	public float jaggyTravel() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelTailControlRun]" + "[jaggyTravel]");
+
 		if (ev3.getBrightness() > THRESHOLD) {
 			return 20.0F; // 右旋回命令
 		} else {

@@ -10,11 +10,13 @@ public class Button {
 
 
 	public Button(EV3Control ev3Control) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Button]" + "[Button]");
+
 		this.ev3Control = ev3Control;
 	}
 
 	public TouchStatus touchStatus() {
-
 
 		if (ev3Control.touchSensorIsPressed()) {
 			pressStatus = true; // タッチセンサーが押された

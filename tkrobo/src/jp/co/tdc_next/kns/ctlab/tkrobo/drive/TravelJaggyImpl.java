@@ -15,11 +15,17 @@ public class TravelJaggyImpl implements Travel {
 
 	public TravelJaggyImpl(Calibrater calibrater) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelJaggyImpl]" + "[TravelJaggyImpl]");
+
+
 		this.THRESHOLD = (calibrater.blackBaseline() + calibrater.whiteBaseline()) / 2.0F;
 
 	}
 
 	public void travel(WheelSpeed speed) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelJaggyImpl]" + "[travel]");
+
 		float forward = speed.getWheelSpeedScaleLeft();
 		float turn = jaggyTravel();
 		int tail = 0;
@@ -30,6 +36,9 @@ public class TravelJaggyImpl implements Travel {
 	 * ジグザグ走行制御
 	 */
 	public float jaggyTravel() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelJaggyImpl]" + "[jaggyTravel]");
+
 		if (ev3.getBrightness() > THRESHOLD) {
 			return 50.0F; // 右旋回命令
 		} else {

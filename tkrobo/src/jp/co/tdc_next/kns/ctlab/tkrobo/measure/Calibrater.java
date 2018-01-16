@@ -23,6 +23,9 @@ public class Calibrater {
 
 	public Calibrater(EV3Control ev3Control, Button button) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Calibrater]" + "[Calibrater]");
+
+
 		this.ev3Control = ev3Control;
 		this.button = button;
 	}
@@ -35,19 +38,30 @@ public class Calibrater {
 
 		LCD.drawString("Get Black...  ", 0, 4);
 
+		//黒色を認識？ボタン押下待ち
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Button]" + "[calibration]" + "Please black");
 		blackBaseline = getBrightnessForTouchWait();
 		LCD.drawString("Black:" + blackBaseline, 0, 5);
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Button]" + "[calibration]" + "black get");
 
 		LCD.drawString("Get White...  ", 0, 4);
 
 
+		//白色を認識？ボタン押下待ち
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Button]" + "[calibration]" + "Please white");
 		whiteBaseline = getBrightnessForTouchWait();
 		LCD.drawString("White:" + whiteBaseline, 0, 6);
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Button]" + "[calibration]" + "white get");
+
 		LCD.drawString("Reset?", 0, 7);
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Button]" + "[calibration]" + "Reset");
+
 		while (button.touchStatus() != TouchStatus.Released) {
 			resetFlag = lejos.hardware.Button.UP.isDown();
+			System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Button]" + "[calibration]" + "Please button");
 			Delay.msDelay(10);
 		}
 
@@ -58,6 +72,9 @@ public class Calibrater {
 
 	private float getBrightnessForTouchWait() {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Calibrater]" + "[getBrightnessForTouchWait]" + "Please button");
+
+
 		while (button.touchStatus() != TouchStatus.Released) {
 			Delay.msDelay(10);
 		}
@@ -65,11 +82,17 @@ public class Calibrater {
 	}
 
 	public float blackBaseline() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Calibrater]" + "[blackBaseline]");
+
 		return blackBaseline;
 
 	}
 
 	public float whiteBaseline() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[Calibrater]" + "[whiteBaseline]");
+
 		return whiteBaseline;
 	}
 }

@@ -22,6 +22,9 @@ public class PIDDriver implements Driveable {
 
 	public PIDDriver(EV3Control ev3Control, Calibrater calibrater) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[PIDDriver]" + "[PIDDriver]");
+
+
 		this.ev3Control = ev3Control;
 		this.calibrater = calibrater;
 
@@ -41,6 +44,9 @@ public class PIDDriver implements Driveable {
 	@Override
 	public void drive(int speed, int leftMotorCount, int rightMotorCount) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[PIDDriver]" + "[drive]");
+
+
 		int s_r = ev3Control.getRMotorCount();
 		int s_l = ev3Control.getLMotorCount();
 
@@ -56,6 +62,9 @@ public class PIDDriver implements Driveable {
 	}
 
 	public float getBrightnessValue() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[PIDDriver]" + "[getBrightnessValue]");
+
 
 		float temp = ev3Control.getBrightness();
 
@@ -73,6 +82,9 @@ public class PIDDriver implements Driveable {
 	 * @return PID制御後の回転量
 	 */
 	private float calcTurnValue(float nowLight) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[PIDDriver]" + "[calcTurnValue]");
+
 
 		LCD.drawString(Float.toString(nowLight), 0, 2);
 		float tm = stopwatch.elapsed() / 250.0f;
@@ -114,6 +126,9 @@ public class PIDDriver implements Driveable {
 	 * @return 制限実施後の値を返す。
 	 */
 	private float MathLimit(float value, float max, float min) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[PIDDriver]" + "[MathLimit]");
+
 		if (value > max) {
 			return max;
 		} else if (value < min) {

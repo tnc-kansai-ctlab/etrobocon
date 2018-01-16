@@ -29,6 +29,9 @@ public class DriveStrategyImpl implements DriveStrategy {
 
 	public DriveStrategyImpl(Calibrater calibrater) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[DriveStrategyImpl]" + "[DriveStrategyImpl]");
+
+
 		this.calibrater = calibrater;
 		travel = new TravelPidImpl(this.calibrater);
 		jaggy = new TravelJaggyImpl(this.calibrater);
@@ -36,12 +39,20 @@ public class DriveStrategyImpl implements DriveStrategy {
 		taildown = new TravelTailDownImpl(this.calibrater);
 		tailControl = new TravelTailControlRun(this.calibrater, 90);
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[DriveStrategyImpl]" + "[DriveStrategyImpl]" + "travel=" + travel);
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[DriveStrategyImpl]" + "[DriveStrategyImpl]" + "jaggy=" + jaggy);
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[DriveStrategyImpl]" + "[DriveStrategyImpl]" + "tail=" + tail);
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[DriveStrategyImpl]" + "[DriveStrategyImpl]" + "taildown=" + taildown);
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[DriveStrategyImpl]" + "[DriveStrategyImpl]" + "tailControl=" + tailControl);
 
 		//sw = new Stopwatch();
 	}
 
 	@Override
 	public void operate(Course cource) throws InterruptedException {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[DriveStrategyImpl]" + "[operate]");
+
 
 		while (true) {
 

@@ -104,6 +104,9 @@ public class EV3 implements Runnable, EV3Control {
 	 * コンストラクタ。
 	 */
 	private EV3() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[EV3]");
+
 		motorPortL = MOTORPORT_LWHEEL.open(TachoMotorPort.class); // 左モータ
 		motorPortR = MOTORPORT_RWHEEL.open(TachoMotorPort.class); // 右モータ
 		motorPortT = MOTORPORT_TAIL.open(TachoMotorPort.class); // 尻尾モータ
@@ -118,12 +121,14 @@ public class EV3 implements Runnable, EV3Control {
 
 		// 超音波センサー
 		// 使用している個体では例外が発生する。差し当たり超音波センサーは利用しないので例外回避。
+
 		try {
 			sonar = new EV3UltrasonicSensor(SENSORPORT_SONAR);
 			distanceMode = sonar.getDistanceMode(); // 距離検出モード
 			sampleDistance = new float[distanceMode.sampleSize()];
 			sonar.enable();
 		} catch (IllegalArgumentException iae) {
+
 			sonar = null;
 			distanceMode = null;
 			sampleDistance = null;
@@ -148,6 +153,9 @@ public class EV3 implements Runnable, EV3Control {
 	 * が起きるデフォルトの実行回数は 1500。
 	 */
 	private void idling() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[idling]" + "Start");
+
 		for (int i = 0; i < 1500; i++) {
 			motorPortL.controlMotor(0, 0);
 			getBrightness();
@@ -157,12 +165,17 @@ public class EV3 implements Runnable, EV3Control {
 			Balancer.control(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 8000);
 		}
 		Delay.msDelay(10000); // 別スレッドで HotSpot が完了するだろう時間まで待つ。
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[idling]" + "End");
 	}
 
 	/**
 	 * センサー、モータ、倒立振子ライブラリのリセット。
 	 */
 	public void reset() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[reset]");
+
 		gyro.reset();
 		motorPortL.controlMotor(0, 0);
 		motorPortR.controlMotor(0, 0);
@@ -174,6 +187,9 @@ public class EV3 implements Runnable, EV3Control {
 	}
 
 	public void resetGyro() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[resetGyro]");
+
 		gyro.reset();
 		motorPortL.resetTachoCount(); // 左モータエンコーダリセット
 		motorPortR.resetTachoCount(); // 右モータエンコーダリセット
@@ -184,6 +200,9 @@ public class EV3 implements Runnable, EV3Control {
 	 * センサー、モータの終了処理。
 	 */
 	public void close() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[close]");
+
 
 		motorPortL.close();
 		motorPortR.close();
@@ -202,6 +221,9 @@ public class EV3 implements Runnable, EV3Control {
 	 * @return true ならタッチセンサーが押された。
 	 */
 	public final boolean touchSensorIsPressed() {
+
+//		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[touchSensorIsPressed]");
+
 		touchMode.fetchSample(sampleTouch, 0);
 		return ((int) sampleTouch[0] != 0);
 	}
@@ -218,6 +240,9 @@ public class EV3 implements Runnable, EV3Control {
 	 */
 	public void controlBalance(float forward, float turn, int tail) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[controlBalance]");
+
+
 		this.forward = forward;
 		this.turn = turn;
 		this.tail = tail;
@@ -230,6 +255,10 @@ public class EV3 implements Runnable, EV3Control {
 	 * @param angle モータ目標角度[度]
 	 */
 	private void controlTail(int angle) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[controlTail]" +  "angle=" + angle);
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[controlTail]" +  "motorPortT.getTachoCount=" + motorPortT.getTachoCount());
+
 		float pwm = (float) (angle - motorPortT.getTachoCount()) * P_GAIN; // 比例制御
 		// PWM出力飽和処理
 		if (pwm > PWM_ABS_MAX) {
@@ -247,6 +276,9 @@ public class EV3 implements Runnable, EV3Control {
 	 */
 	public final float getSonarDistance() {
 
+//		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[getSonarDistance]");
+
+
 		return sonarDistance;
 	}
 
@@ -256,6 +288,9 @@ public class EV3 implements Runnable, EV3Control {
 	 * @return 輝度値。
 	 */
 	public final float getBrightness() {
+
+//		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[getBrightness]");
+
 		redMode.fetchSample(sampleLight, 0);
 		return sampleLight[0];
 	}
@@ -266,6 +301,9 @@ public class EV3 implements Runnable, EV3Control {
 	 * @return 角速度。
 	 */
 	public final float getGyroValue() {
+
+//		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[getGyroValue]");
+
 		rate.fetchSample(sampleGyro, 0);
 		// leJOS ではジャイロセンサーの角速度値が正負逆になっているので、
 		// 倒立振子ライブラリの仕様に合わせる。
@@ -274,6 +312,9 @@ public class EV3 implements Runnable, EV3Control {
 
 	@Override
 	public void run() {
+
+//		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[run]");
+
 
 		if (++driveCallCounter >= 40 / 4) { // 約40msごとに障害物検知
 			// 超音波センサーが使用できるとは限らない。
@@ -308,6 +349,9 @@ public class EV3 implements Runnable, EV3Control {
 	@Override
 	public void controlDirect(int left, int right, int tail) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[controlDirect]");
+
+
 		this.leftMotorPower =left;
 		this.rightMotorPower = right;
 
@@ -319,17 +363,26 @@ public class EV3 implements Runnable, EV3Control {
 	@Override
 	public int getLMotorCount() {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[getLMotorCount]");
+
+
 		return motorPortL.getTachoCount();
 	}
 
 	@Override
 	public int getRMotorCount() {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[getRMotorCount]");
+
+
 		return motorPortR.getTachoCount();
 	}
 
 	@Override
 	public int getTailAngle() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.device]" + "[EV3]" + "[getTailAngle]");
+
 
 		return motorPortT.getTachoCount();
 	}

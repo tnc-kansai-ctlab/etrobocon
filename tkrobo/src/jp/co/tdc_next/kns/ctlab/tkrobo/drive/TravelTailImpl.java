@@ -11,12 +11,18 @@ public class TravelTailImpl implements Travel {
 	private Calibrater calibrater;
 
 	public TravelTailImpl(Calibrater calibrater, int tail) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelTailImpl]" + "[TravelTailImpl]");
+
 		//this.THRESHOLD = (calibrater.blackBaseline() + calibrater.whiteBaseline() * 2) / 3.0F;
 		this.calibrater = calibrater;
 		this.tail = tail;
 	}
-	
+
 	public float getBrightnessValue() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelTailImpl]" + "[getBrightnessValue]");
+
 
 		float temp = ev3.getBrightness();
 
@@ -27,10 +33,13 @@ public class TravelTailImpl implements Travel {
 	}
 
 	public void travel(WheelSpeed speed) {
-//		
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelTailImpl]" + "[travel]");
+
+//
 //		int left;
 //		int right;
-//		
+//
 //		if (getBrightnessValue() > 80) {
 //			left = speed.getWheelSpeedScaleLeft();
 //			right = speed.getWheelSpeedScaleRight();
@@ -40,7 +49,7 @@ public class TravelTailImpl implements Travel {
 //		}
 		int left = speed.getWheelSpeedScaleLeft();
 		int right = speed.getWheelSpeedScaleRight();
-		
+
 		ev3.controlDirect(left, right, tail) ;
 	}
 

@@ -31,6 +31,9 @@ public class RemoteTask implements Runnable {
 
     public static RemoteTask getInstance() {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[RemoteTask]" + "[getInstance]");
+
+
     	if(remoteTask == null) {
     		remoteTask = new RemoteTask();
     	}
@@ -43,6 +46,9 @@ public class RemoteTask implements Runnable {
      * コンストラクタ。
      */
     private RemoteTask() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[RemoteTask]" + "[RemoteTask]");
+
         server = null;
         client = null;
         inputStream = null;
@@ -55,6 +61,9 @@ public class RemoteTask implements Runnable {
      */
     @Override
     public void run() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[RemoteTask]" + "[run]");
+
         try {
             if (server == null) { // 未接続
                 server = new ServerSocket(SOCKET_PORT);
@@ -78,6 +87,9 @@ public class RemoteTask implements Runnable {
      * @param command コマンド
      */
     public final boolean checkRemoteCommand(int command) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[RemoteTask]" + "[checkRemoteCommand]");
+
         if (remoteCommand > 0) {
             if (remoteCommand == command) {
                 return true;
@@ -90,6 +102,9 @@ public class RemoteTask implements Runnable {
      * 終了処理。
      */
     public void close() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.sample]" + "[RemoteTask]" + "[close]");
+
         if (server != null) {
             try { server.close(); } catch (IOException ex) {}
         }

@@ -12,10 +12,16 @@ public class SectionRunActual {
 	int initMotorCount;
 
 	public SectionRunActual(EV3Control ev3Control) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[SectionRunActual]" + "[RightMoterDetection]");
+
 		this.ev3Control = ev3Control;
 	}
 
 	public boolean notify(Condition condition){
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[SectionRunActual]" + "[notify]");
+
 		boolean notify = false;
 		switch (condition.getConditionType()){
 		case DISTANCE:
@@ -48,6 +54,9 @@ public class SectionRunActual {
 		return notify;
 	}
 	public void start(){
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.measure]" + "[SectionRunActual]" + "[start]");
+
 
 		time.reset();
 		this.initMotorCount  = ev3Control.getLMotorCount();

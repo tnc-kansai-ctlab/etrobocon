@@ -20,6 +20,9 @@ public class CourceFactory {
 
 	public static Course create(CourceType courceType){
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[CourceFactory]" + "[create]");
+
+
 		List<Section> sectionList;
 
 		switch (courceType) {
@@ -43,6 +46,9 @@ public class CourceFactory {
 	}
 
 	private static List<Section> createGateCource() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[CourceFactory]" + "[createGateCource]");
+
 
 		List<Section> sectionList = new ArrayList<>();
 
@@ -107,6 +113,9 @@ public class CourceFactory {
 
 	private static List<Section> createStairsCource() {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[CourceFactory]" + "[createStairsCource]");
+
+
 		List<Section> sectionList = new ArrayList<>();
 
 		//尻尾下ろし
@@ -133,11 +142,14 @@ public class CourceFactory {
 		WheelSpeed speed8 = new WheelSpeed(0, 0);
 		Condition condition8 = new Condition(ConditionType.DISTANCE, 6000);
 		sectionList.add(new Section(speed8, TravelType.TAIL, condition8, null));
-		
+
 		return sectionList;
 	}
 
 	private static List<Section> createLeftCource() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[CourceFactory]" + "[createLeftCource]");
+
 
 		List<Section> sectionList = new ArrayList<>();
 
@@ -199,6 +211,9 @@ public class CourceFactory {
 	}
 
 	private static List<Section> createRightCource() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.strategy]" + "[CourceFactory]" + "[createRightCource]");
+
 
 		List<Section> sectionList = new ArrayList<>();
 

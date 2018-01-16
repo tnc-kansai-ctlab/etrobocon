@@ -42,6 +42,9 @@ public class start implements Runnable {
 
 	public static void main(String[] args) {
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[main]");
+
+
 		start starti = new start();
 
 		starti.control();
@@ -49,6 +52,9 @@ public class start implements Runnable {
 	}
 
 	public void starter() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[starter]");
+
 
 		EV3 ev3 = EV3.getInstance();
 
@@ -58,15 +64,13 @@ public class start implements Runnable {
 
 			futureDrive = scheduler.scheduleAtFixedRate(ev3, 0, 4, TimeUnit.MILLISECONDS);
 			ev3.controlDirect(0, 0, 0);
-
 			driveStrategy = new DriveStrategyImpl(calibrater);
 
 			cource = CourceFactory.create(CourceType.LEFT);
-
 			// PIDDriver pidDriver = new PIDDriver(ev3, calibrater);
-
 			LCD.drawString("Start Wait", 0, 3);
 			while (button.touchStatus() != TouchStatus.Released) {
+				System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[starter]" + "Please button");
 				Delay.msDelay(10);
 			}
 
@@ -75,9 +79,11 @@ public class start implements Runnable {
 
 			futureRemote = scheduler.scheduleAtFixedRate(RemoteTask.getInstance(), 0, 500, TimeUnit.MILLISECONDS);
 
+			System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[starter]" + "xxxxxxxxxxxxxxxxx shippo kotei xxxxxxxxxxxxxxxxxxxxx");
 			// 尻尾を停止位置へ固定しスタート準備
 			while (button.touchStatus() != TouchStatus.Released
 					&& !RemoteTask.getInstance().checkRemoteCommand(RemoteTask.REMOTE_COMMAND_START)) {
+				System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[starter]" + "xxxxxxxx REMOTE_COMMAND_START Please button xxxxxxxxx");
 				ev3.controlDirect(0, 0, 96);
 				Delay.msDelay(10);
 			}
@@ -95,6 +101,7 @@ public class start implements Runnable {
 
 			while (button.touchStatus() != TouchStatus.Released
 					&& !RemoteTask.getInstance().checkRemoteCommand(RemoteTask.REMOTE_COMMAND_STOP)) {
+				System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[starter]" + "xxxxxxxx REMOTE_COMMAND_STOP1 Please button xxxxxxxxx");
 				Delay.msDelay(250);
 			}
 
@@ -106,6 +113,7 @@ public class start implements Runnable {
 
 			while (button.touchStatus() != TouchStatus.Released
 					&& !RemoteTask.getInstance().checkRemoteCommand(RemoteTask.REMOTE_COMMAND_STOP)) {
+				System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[starter]" + "xxxxxxxx REMOTE_COMMAND_STOP2 Please button xxxxxxxxx");
 				endFlag  = lejos.hardware.Button.DOWN.isDown();
 				Delay.msDelay(250);
 			}
@@ -129,6 +137,9 @@ public class start implements Runnable {
 	}
 
 	public void control() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[control]");
+
 
 		// キャリブレーション実行
 		this.button = new Button(EV3.getInstance());
@@ -157,6 +168,9 @@ public class start implements Runnable {
 
 	@Override
 	public void run() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.ui]" + "[start]" + "[run]");
+
 		try {
 			driveStrategy.operate(cource);
 

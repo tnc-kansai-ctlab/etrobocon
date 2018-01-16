@@ -19,9 +19,15 @@ public class Course {
 
 
 	public Course(){
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.section]" + "[Course]" + "[Course]");
+
 	}
 
 	public Course(List<Section> sectionList){
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.section]" + "[Course]" + "[Course]");
+
 		this.sectionList = sectionList;
 		sectionList.get(driveSection).startMeasure();
 	}
@@ -32,11 +38,14 @@ public class Course {
 	 */
 	public Section DecideSpeed(){
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.section]" + "[Course]" + "[DecideSpeed]");
+
+
 
 //		if(sectionList.get(driveSection).judgeAbnormal()){
 //			updateSection();
 //		}
-		
+
 		if(sectionList.get(driveSection).judgeEndOfSection()){
 			updateSection();
 		}
@@ -50,6 +59,9 @@ public class Course {
 	 */
 	public boolean isDriving(){
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.section]" + "[Course]" + "[isDriving]");
+
+
 		if(sectionList.size() > driveSection){
 			return true;
 		}
@@ -61,10 +73,13 @@ public class Course {
 	 */
 	private void updateSection(){
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.section]" + "[Course]" + "[updateSection]");
+
+
 		driveSection++;
 
 		Sound.beep();
 		sectionList.get(driveSection).startMeasure();
 	}
-	
+
 }

@@ -6,6 +6,9 @@ public class TravelTailUpImpl implements Travel {
 	EV3 ev3 = EV3.getInstance();
 
 	public void travel(WheelSpeed speed) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelTailUpImpl]" + "[travel]");
+
 		int tail_up = 66;
 		int tail_down = 90;
 		for (int i = tail_up; i >= tail_down; i++) {

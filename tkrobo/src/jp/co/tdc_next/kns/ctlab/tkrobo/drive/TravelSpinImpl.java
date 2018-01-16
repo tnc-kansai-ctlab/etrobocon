@@ -6,6 +6,9 @@ public class TravelSpinImpl implements Travel {
 
 	EV3 ev3 = EV3.getInstance();
 	public void travel(WheelSpeed speed) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelSpinImpl]" + "[travel]");
+
 		float forward = speed.getWheelSpeedScaleLeft();
 		float turn = 50.0F;
 		int tail = 0;

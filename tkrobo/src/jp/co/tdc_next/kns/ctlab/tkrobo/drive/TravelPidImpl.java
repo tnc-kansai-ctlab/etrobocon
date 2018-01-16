@@ -23,6 +23,8 @@ public class TravelPidImpl implements Travel {
 
 	public TravelPidImpl(Calibrater calibrater) {
 
+
+
 		this.calibrater = calibrater;
 
 		this.targetLight = 60;
@@ -34,15 +36,22 @@ public class TravelPidImpl implements Travel {
 
 		stopwatch = new Stopwatch();
 
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelPidImpl]" + "[TravelPidImpl]" + "xxxxxxxxxxxxxxxxx 1500wait start xxxxxxxxxxxxxxxxx");
 		for(int i = 0; i < 1500; i++) {
 			CalcTurnValue(0.0f);
 		}
+
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelPidImpl]" + "[TravelPidImpl]" + "xxxxxxxxxxxxxxxxx 1500wait end xxxxxxxxxxxxxxxxx");
 	}
 
 
 
 
 	public void travel(WheelSpeed speed) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelPidImpl]" + "[travel]");
+
 		float forward = speed.getWheelSpeedScaleLeft();
 		float turn = CalcTurnValue(getBrightnessValue());
 		int tail = 0;
@@ -52,6 +61,9 @@ public class TravelPidImpl implements Travel {
 
 
 	public float getBrightnessValue() {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelPidImpl]" + "[getBrightnessValue]");
+
 
 		float temp = ev3.getBrightness();
 
@@ -69,6 +81,9 @@ public class TravelPidImpl implements Travel {
 	 * @return PID制御後の回転量
 	 */
 	private float CalcTurnValue(float nowLight) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelPidImpl]" + "[CalcTurnValue]" + "nowLight=" + nowLight);
+
 
 		//LCD.drawString(Float.toString(nowLight), 0, 2);
 
@@ -113,6 +128,9 @@ public class TravelPidImpl implements Travel {
 	 * @return 制限実施後の値を返す。
 	 */
 	private float MathLimit(float value, float max, float min) {
+
+		System.out.println("[jp.co.tdc_next.kns.ctlab.tkrobo.drive]" + "[TravelPidImpl]" + "[MathLimit]");
+
 		if (value > max) {
 			return max;
 		} else if (value < min) {

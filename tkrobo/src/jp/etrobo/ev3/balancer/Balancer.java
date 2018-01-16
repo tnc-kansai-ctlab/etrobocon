@@ -20,7 +20,7 @@
 ** VERSION : 1.893
 ** HISTORY : y_yama - Tue Sep 25 11:37:09 2007
 ** takashic - Sun Sep 28 17:50:53 2008
-** INACHI Minoru - Thu Apr 16 00:10:24 2015 
+** INACHI Minoru - Thu Apr 16 00:10:24 2015
 ** ported from balancer.c
 **
 ** Copyright (c) 2009-2016 MathWorks, Inc.
@@ -50,7 +50,7 @@
 ** バージョン : 1.893
 ** 履歴 : y_yama - Tue Sep 25 11:37:09 2007
 ** takashic - Sun Sep 28 17:50:53 2008
-** INACHI Minoru - Thu Apr 16 00:10:24 2015 
+** INACHI Minoru - Thu Apr 16 00:10:24 2015
 ** balancer.cを移植
 **
 ** Copyright (c) 2009-2016 MathWorks, Inc.
@@ -139,6 +139,9 @@ public class Balancer {
      * @return ローパスフィルタ係数(左右車輪の平均回転角度用)
      */
     public static final float getAD() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getAD]");
+
         return A_D;
     }
 
@@ -147,6 +150,9 @@ public class Balancer {
      * @param a_d ローパスフィルタ係数(左右車輪の平均回転角度用)
      */
     public static final void setAD(float a_d) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setAD]");
+
         A_D = a_d;
     }
 
@@ -155,6 +161,9 @@ public class Balancer {
      * @return ローパスフィルタ係数(左右車輪の目標平均回転角度用)
      */
     public static final float getAR() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getAR]");
+
         return A_R;
     }
 
@@ -163,6 +172,9 @@ public class Balancer {
      * @param a_r ローパスフィルタ係数(左右車輪の目標平均回転角度用)
      */
     public static final void setAR(float a_r) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setAR]");
+
         A_R = a_r;
     }
 
@@ -173,6 +185,9 @@ public class Balancer {
      *            車体傾斜角速度係数
      */
     public static final float[] getKF() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getKF]");
+
         return K_F;
     }
 
@@ -183,6 +198,9 @@ public class Balancer {
      *            車体傾斜角速度係数
      */
     public static final void setKF(float[] k_f) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setKF]");
+
         K_F = k_f;
     }
 
@@ -191,6 +209,9 @@ public class Balancer {
      * @param k_i サーボ制御用積分係数
      */
     public static final float getKI() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getKI]");
+
         return K_I;
     }
 
@@ -199,6 +220,9 @@ public class Balancer {
      * @param k_i サーボ制御用積分係数
      */
     public static final void setKI(float k_i) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setKI]");
+
         K_I = k_i;
     }
 
@@ -207,6 +231,9 @@ public class Balancer {
      * @return 車体の目標平面回転速度(dφ/dt)係数
      */
     public static final float getKPhidot() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getKPhidot]");
+
         return K_PHIDOT;
     }
 
@@ -215,6 +242,9 @@ public class Balancer {
      * @param k_phidot 車体の目標平面回転速度(dφ/dt)係数
      */
     public static final void setKPhidot(float k_phidot) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setKPhidot]");
+
         K_PHIDOT = k_phidot;
     }
 
@@ -223,6 +253,9 @@ public class Balancer {
      * @return 左右車輪の平均回転速度(dθ/dt)係数
      */
     public static final float getKThetadot() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getKThetadot]");
+
         return K_THETADOT;
     }
 
@@ -231,6 +264,9 @@ public class Balancer {
      * @param k_thetadot 左右車輪の平均回転速度(dθ/dt)係数
      */
     public static final void setKThetadot(float k_thetadot) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setKThetadot]");
+
         K_THETADOT = k_thetadot;
     }
 
@@ -239,6 +275,9 @@ public class Balancer {
      * @return PWM出力算出用バッテリ電圧補正係数
      */
     public static final float getBatteryGain() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getBatteryGain]");
+
         return BATTERY_GAIN;
     }
 
@@ -247,6 +286,9 @@ public class Balancer {
      * @param battery_gain PWM出力算出用バッテリ電圧補正係数
      */
     public static final void setBatteryGain(float battery_gain) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setBatteryGain]");
+
         BATTERY_GAIN = battery_gain;
     }
 
@@ -255,6 +297,9 @@ public class Balancer {
      * @return PWM出力算出用バッテリ電圧補正オフセット
      */
     public static final float getBatteryOffset() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getBatteryOffset]");
+
         return BATTERY_OFFSET;
     }
 
@@ -263,6 +308,9 @@ public class Balancer {
      * @param battery_offset PWM出力算出用バッテリ電圧補正オフセット
      */
     public static void setBatteryOffset(float battery_offset) {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[setBatteryOffset]");
+
         BATTERY_OFFSET = battery_offset;
     }
 
@@ -273,6 +321,9 @@ public class Balancer {
      */
     /* Model initialize function */
     public static final void init() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[init]");
+
         /* Registration code */
 
         /* states (dwork) */
@@ -289,10 +340,10 @@ public class Balancer {
      * EV3way-GSバランス制御メソッド。
      * 本メソッド実行後、getPwmL および getPwmR で左右モータPMW出力値を取得します。
      *
-     * このメソッドは4msec周期で起動されることを前提に設計されています。 
+     * このメソッドは4msec周期で起動されることを前提に設計されています。
      * 左右の車輪駆動モータは個体差により、同じPWM出力を与えても回転数が異なる場合が
      * あります。その場合は別途補正機能を追加する必要があります。
-     * 
+     *
      * @param args_cmd_forward
      *            前進/後進命令。100(前進最大値)～-100(後進最大値)
      * @param args_cmd_turn
@@ -320,6 +371,9 @@ public class Balancer {
         float tmp_pwm_l_limiter;
         float tmp_thetadot_cmd_lpf;
         int tmp_0;
+
+//		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[control]");
+
 
        /*
         * Sum: '<S8>/Sum' incorporates: Constant: '<S3>/Constant6' Constant:
@@ -446,26 +500,35 @@ public class Balancer {
 
     /**
      * 左モータPMW出力値取得
-     * 
+     *
      * @return 100(前進最大値)～-100(後進最大値)
      */
 	/* left motor PWM output */
 	public static final int getPwmL() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getPwmL]");
+
 		return pwm_l;
 	}
 
     /**
      * 右モータPMW出力値取得
-     * 
+     *
      * @return 100(前進最大値)～-100(後進最大値)
      */
     /* right motor PWM output */
     public static final int getPwmR() {
+
+		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[getPwmR]");
+
         return pwm_r;
     }
 
     /* rt_SATURATE.h */
     private static final float rt_SATURATE(float sig, float ll, float ul) {
+
+//		System.out.println("[jp.etrobo.ev3.balancer]" + "[Balancer]" + "[rt_SATURATE]");
+
         return (((sig) >= (ul)) ? (ul) : (((sig) <= (ll)) ? (ll) : (sig)));
     }
 }
